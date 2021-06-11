@@ -5,10 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
+    <style>
+        #hello {
+            text-align: center;
+        }
+        h3 {
+            color: rgb(13, 231, 231);
+            font-size: 25px;
+            text-align: center;
+        }
+        input {
+            text-align: center;
+        }
+        strong {
+            color: rgb(13, 231, 231);
+        }
+        body  {
+  background-image: url("bg.jpeg");
+  background-color: #cccccc;
+}
+    </style>
 </head>
 <body style="background-color: #C0C0C0">
-    <form action="feldolgozo.php" method="POST" target="feldolgozo">
-        <strong>Form:</strong><br>
+    <div id="hello">  
+          <form action="feldolgozo.php" method="POST" target="feldolgozo">
+        <h3><strong>Form:</strong></h3><br>
         <br><strong>Név:</strong><input type="text" name="nev">
         <br>
         <br><strong>Email cím:</strong><input type="text" name="email">
@@ -21,5 +42,7 @@
         <br><input type="submit" value="Elküld">
         
     </form>
+</div>
+
 </body>
 </html>
