@@ -1,0 +1,18 @@
+#hello {
+    text-align: center;
+}
+h3 {
+    color: rgb(13, 231, 231);
+    font-size: 25px;
+    text-align: center;
+}
+input {
+    text-align: center;
+}
+strong {
+    color: rgb(13, 231, 231);
+}
+body  {
+background-image: url("bg.jpeg");
+background-color: #cccccc;
+}
