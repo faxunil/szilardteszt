@@ -1,29 +1,27 @@
+from time import sleep
+from selenium import webdriver
 from bs4 import BeautifulSoup
-import requests
-import re
 
-page_to_scrape = requests.get("https://arfigyelo.gvh.hu/kereses/toj%C3%A1s?order=relevance")
-soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
-termek = soup.findAll('div', attrs={'class':'card-title'})
+driver = webdriver.Chrome()
 
-if page_to_scrape.status_code == 200:
-    print("Az oldal sikeresen letöltve.")
-else:
-    print(f"Hiba a letöltés során. Státuszkód: {page_to_scrape.status_code}")
-    exit()
+driver.get('https://arfigyelo.gvh.hu/kereses/toj%C3%A1s?order=relevance')
 
-print(termek)
+sleep(2)
+
+html = driver.page_source
+
+soup = BeautifulSoup(html, 'html.parser')
+
+termek = soup.find_all('div', 'col')
 
 num = 0
 
-for item in termek:
-    y = item.text
-    x = re.search("10", item.text)
-    if x:
-        print('------------------------------------------------------------------------------')
-        print(y)
-        print('------------------------------------------------------------------------------')
-        print('\n')
-        num = num + 1
-
-print(f'Találat: {num}')
+for x in termek:
+    title = x.find('div', 'card-title')
+    prices = x.find_all('div', 'price-row')
+    if title is not None:
+        num += 1
+        print(f'{num} {title.text}')
+        for price in prices:
+            if price is not None and price.text.strip():
+                print(f'   Ár: {price.text.strip()}')
